@@ -78,4 +78,3 @@ class rectangle(Base):
 
     def display(self):
         """prints in stdout the Rectangle instance with the character #."""
-        
