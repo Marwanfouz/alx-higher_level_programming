@@ -26,6 +26,35 @@ class Square(Rectangle):
         self.width = value
         self.height = value
 
+    def update(self, *args, **kwargs):
+        """method assigns attributes"""
+        if args and len(args) != 0:
+            for i, j in enumerate(args):
+                if i == 0:
+                    if j is None:
+                        self.__init__(self.size, self.x, self.y)
+                    else:
+                        self.id = j
+                if i == 1:
+                    self.size = j
+                if i == 2:
+                    self.x = j
+                if i == 3:
+                    self.y = j
+        else:
+            for key, value in kwargs.items():
+                if key == "id":
+                    if value is None:
+                        self.__init__(self.size, self.x, self.y)
+                    else:
+                        self.id = value
+                if key == "size":
+                    self.size = value
+                if key == "x":
+                    self.x = value
+                if key == "y":
+                    self.y = value
+
     def __str__(self):
         """Return the print() and str() representation of the Square."""
         s = "[Square] ({}) {}/{} - {}"
