@@ -84,6 +84,20 @@ class Rectangle(Base):
             [print("#", end="") for w in range(self.width)]
             print("")
 
+    def update(self, *args):
+        """Assigns an argument to each attribute."""
+        for i, j in enumerate(args):
+            if i == 0:
+                self.id = j
+            if i == 1:
+                self.width = j
+            if i == 2:
+                self.height = j
+            if i == 3:
+                self.x = j
+            if i == 4:
+                self.y = j
+
     def __str__(self):
         """Return the print() and str() representation of the Rectangle."""
         s = "[Rectangle] ({}) {}/{} - {}/{}"
