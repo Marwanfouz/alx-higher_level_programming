@@ -84,19 +84,38 @@ class Rectangle(Base):
             [print("#", end="") for w in range(self.width)]
             print("")
 
-    def update(self, *args):
-        """Assigns an argument to each attribute."""
-        for i, j in enumerate(args):
-            if i == 0:
-                self.id = j
-            if i == 1:
-                self.width = j
-            if i == 2:
-                self.height = j
-            if i == 3:
-                self.x = j
-            if i == 4:
-                self.y = j
+    def update(self, *args, **kwargs):
+        """Assigns an argument and key/value to each attribute."""
+        if args and len(args) != 0:
+            for i, j in enumerate(args):
+                if i == 0:
+                    if j is None:
+                        self.__init__(self.width, self.height, self.x, self.y)
+                    else:
+                        self.id = j
+                if i == 1:
+                    self.width = j
+                if i == 2:
+                    self.height = j
+                if i == 3:
+                    self.x = j
+                if i == 4:
+                    self.y = j
+        else:
+            for key, value in kwargs.items():
+                if key == "id":
+                    if value is None:
+                        self.__init__(self.width, self.height, self.x, self.y)
+                    else:
+                        self.id = value
+                if key == "width":
+                    self.width = value
+                if key == "height":
+                    self.height = value
+                if key == "x":
+                    self.x = value
+                if key == "y":
+                    self.y = value
 
     def __str__(self):
         """Return the print() and str() representation of the Rectangle."""
