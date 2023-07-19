@@ -75,30 +75,27 @@ class Base:
 
     @classmethod
     def save_to_file_csv(cls, list_objs):
-        """Write the CSV serialization of a list of objects to a file."""
+        """Write the CSV serialization of a list of objects to a file.
+
+        Args:
+            list_objs (list): A list of inherited Base instances.
+        """
         filename = cls.__name__ + ".csv"
-        with open(filename, "w") as fcsv:
+        with open(filename, "w", newline="") as csvfile:
             if list_objs is None or list_objs == []:
-                fcsv.write("[]")
+                csvfile.write("[]")
             else:
                 if cls.__name__ == "Rectangle":
-                    filenames = ["id", "width", "height", "x", "y"]
+                    fieldnames = ["id", "width", "height", "x", "y"]
                 else:
-                    filenames = ["id", "size", "x", "y"]
-                writer = csv.DictWriter(fcsv, fieldnames=fieldnames)
+                    fieldnames = ["id", "size", "x", "y"]
+                writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
                 for obj in list_objs:
                     writer.writerow(obj.to_dictionary())
 
     @classmethod
     def load_from_file_csv(cls):
-        """Return a list of classes instantiated from a CSV file.
-
-        Reads from `<cls.__name__>.csv`.
-
-        Returns:
-            If the file does not exist - an empty list.
-            Otherwise - a list of instantiated classes.
-        """
+        """Return a list of classes instantiated from a CSV file."""
         filename = cls.__name__ + ".csv"
         try:
             with open(filename, "r", newline="") as csvfile:
