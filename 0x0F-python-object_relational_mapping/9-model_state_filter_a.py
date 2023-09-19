@@ -1,7 +1,6 @@
 #!/usr/bin/python3
-"""
-script that lists all State objects
-from the database hbtn_0e_6_usa
+"""script that lists all State objects that
+contain the letter a from the database hbtn_0e_6_usa.
 """
 import sys
 from model_state import Base, State
@@ -15,7 +14,7 @@ if __name__ == "__main__":
                            pool_pre_ping=True)
     Session = sessionmaker(bind=engine)
     session = Session()
-    states = session.query(State).order_by(State.id).all()
+    states = session.query(State).filter(State.name.like("%a%")).all()
 
     for state in states:
         print("{}: {}".format(state.id, state.name))
