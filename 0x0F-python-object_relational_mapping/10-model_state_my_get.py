@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """
-script that prints the State object with the name
-passed as argument from the database hbtn_0e_6_usa
+lists the State object with the name passed as argument \
+    from the database hbtn_0e_6_usa
 """
 import sys
 from model_state import Base, State
@@ -18,5 +18,4 @@ if __name__ == '__main__':
 
     state = session.query(State).filter(State.name == sys.argv[4]).first()
 
-    for state in states:
-        print("{}: {}".format(state.id, state.name))
+    print("Not found" if not state else "{}".format(state.id))
