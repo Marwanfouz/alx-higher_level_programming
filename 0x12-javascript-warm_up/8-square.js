@@ -4,9 +4,9 @@ if (isNaN(number)) {
     console.log('Missing size');
 } else {
     let mySquare;
-    for (let i = 0; i < number; i++){
+    for (let i = 0; i < number; i++) {
         mySquare = '';
-        for (let j = 0; j < number; j++){
+        for (let j = 0; j < number; j++) {
             mySquare += 'X';
         }
         console.log(mySquare);
