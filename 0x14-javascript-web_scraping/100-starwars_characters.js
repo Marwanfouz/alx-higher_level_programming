@@ -8,7 +8,7 @@ request(url, (err, res, body) => {
   }
   const data = JSON.parse(body).characters;
   for (const characters of data) {
-    request.get(characters, (err, res, body) => {
+    request(characters, (err, res, body) => {
       if (err || res.statusCode !== 200) {
         console.error(err);
         return;
