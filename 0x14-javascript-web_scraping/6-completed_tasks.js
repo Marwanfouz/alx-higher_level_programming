@@ -1,21 +1,20 @@
-#!/user/bin/node
+#!/usr/bin/node
 const request = require('request');
-const url = process.argv[2];
-request(url, (err, res, body) => {
-  if (err || res.statusCode !== 200) {
-    console.error(err);
-    return;
-  }
-  const userdi = {};
-  const data = JSON.parse(body);
-  for (const users of data) {
-    if (users.completed) {
-      if (users.userId in userdi) {
-        userdi[users.userId]++;
-      } else {
-        userdi[users.userId] = 1;
+
+request.get(process.argv[2], (error, resopnse, body) => {
+  if (error) console.log(error);
+  else {
+    const completedTasks = {};
+    const todos = JSON.parse(body);
+    for (const todo of todos) {
+      if (todo.completed) {
+        if (todo.userId in completedTasks) {
+          completedTasks[todo.userId]++;
+        } else {
+          completedTasks[todo.userId] = 1;
+        }
       }
     }
+    console.log(completedTasks);
   }
-  console.log(userdi);
 });
