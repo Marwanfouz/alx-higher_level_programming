@@ -14,7 +14,7 @@ request(url, (err, res, body) => {
         return;
       }
       const movie = JSON.parse(body);
-      console.log(movie.name)
+      console.log(movie.name);
     });
   }
 });
