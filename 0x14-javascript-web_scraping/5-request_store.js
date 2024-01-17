@@ -8,9 +8,9 @@ reqeust(url, (err, res, body) => {
     console.error(err);
     return;
   }
-  fs.writeFile(filename, body ,'utf-8', (err) => {
+  fs.writeFile(filename, body, 'utf-8', (err) => {
     if (err) {
       console.error(err);
     }
-  })
+  });
 });
